@@ -29,8 +29,8 @@ use embedded_svc::wifi::{ClientConfiguration, Configuration, Wifi};
 
 use log::*;
 
-const SSID: &str = env!("SSID");
-const PASSWORD: &str = env!("PASSWORD");
+const SSID: &str = env!("WIFI_SSID");
+const PASSWORD: &str = env!("WIFI_PASSWORD");
 
 macro_rules! singleton {
     ($val:expr) => {{
