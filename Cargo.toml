@@ -1,0 +1,66 @@
+[package]
+name = "rusthome"
+version = "0.1.0"
+authors = ["AveryanAlex <alex@averyan.ru>"]
+edition = "2021"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+# ESP32C3
+esp32c3-hal = { version = "0.7.0", features = [ # git = "https://github.com/esp-rs/esp-hal.git",
+    "embassy",
+    "embassy-time-timg0",
+] }
+esp-backtrace = { version = "0.6.0", features = [
+    "esp32c3",
+    "panic-handler",
+    "exception-handler",
+    "print-uart",
+] }
+esp-println = { version = "0.4.0", features = ["esp32c3", "log"] }
+esp-alloc = { version = "0.2.0", features = ["oom-handler"] }
+
+# Networking
+esp-wifi = { git = "https://github.com/esp-rs/esp-wifi.git", features = [
+    "wifi",
+    "esp32c3",
+    # "esp32c3-async",
+    "embassy-net",
+    "embedded-svc",
+] }
+embedded-svc = { version = "0.23.1", default-features = false, features = [] }
+smoltcp = { version = "0.9.1", default-features = false, features = [
+    "proto-igmp",
+    "proto-ipv4",
+    "socket-tcp",
+    "socket-icmp",
+    "socket-udp",
+    "medium-ethernet",
+    "proto-dhcpv4",
+    "socket-raw",
+    "socket-dhcpv4",
+] }
+embassy-net = { git = "https://github.com/embassy-rs/embassy", rev = "26474ce6eb759e5add1c137f3417845e0797df3a", features = [
+    "nightly",
+    "tcp",
+    "udp",
+    "dhcpv4",
+    "medium-ethernet",
+] }
+embedded-io = "0.4.0"
+
+# Async
+embassy-executor = { package = "embassy-executor", git = "https://github.com/embassy-rs/embassy/", rev = "cd9a65b", features = [
+    "nightly",
+    "integrated-timers",
+] }
+embassy-time = { version = "0.1.0", features = ["nightly"] }
+
+# Other
+log = "0.4"
+
+[profile.dev.package.esp-wifi]
+opt-level = 3
+
+[profile.release]
+lto = "off"
