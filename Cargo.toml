@@ -50,14 +50,16 @@ embassy-net = { git = "https://github.com/embassy-rs/embassy", rev = "26474ce6eb
 embedded-io = "0.4.0"
 
 # Async
-embassy-executor = { package = "embassy-executor", git = "https://github.com/embassy-rs/embassy/", rev = "cd9a65b", features = [
+embassy-executor = { git = "https://github.com/embassy-rs/embassy/", rev = "cd9a65b", features = [
     "nightly",
     "integrated-timers",
 ] }
+embassy-sync = { git = "https://github.com/embassy-rs/embassy/", rev = "cd9a65b" }
 embassy-time = { version = "0.1.0", features = ["nightly"] }
 
 # Other
 log = "0.4"
+heapless = "0.7"
 
 [profile.dev.package.esp-wifi]
 opt-level = 3
